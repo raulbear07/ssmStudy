@@ -5,7 +5,7 @@
 <mapper xmlns="http://mybatis.org/schema/mybatis-mapper" namespace="rr.com.chapter5.mapper.TaskMapper">
     <resultMap id="TaskMap" type="rr.com.chapter5.pojo.Task">
         <result column="id" property="id"></result>
-        <result column=""
+        <result column="title" property="title"></result>
     </resultMap>
     <select id="getTask" resultType="long" resultMap="TaskMap">
 
