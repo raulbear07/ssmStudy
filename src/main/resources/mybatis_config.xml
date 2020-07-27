@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbc.properties"></properties>
+    <typeAliases >
+        <typeAlias alias="role" type="com.rr.mybatisStudy.pojo.Role"></typeAlias>
+        <package name="com.rr.mybatisStudy.pojo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${database.driver}"/>
+                <property name="url" value="${database.url}"/>
+                <property name="username" value="${database.username}"/>
+                <property name="password" value="${database.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/RoleMapper.xml"></mapper>
+        <mapper resource="mapper/UserMapper.xml"></mapper>
+    </mappers>
+</configuration>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper xmlns="http://mybatis.org/schema/mybatis-mapper" namespace="rr.com.chapter5.mapper.TaskMapper">
+    <resultMap id="TaskMap" type="rr.com.chapter5.pojo.Task">
+        <result column="id" property="id"></result>
+        <result column=""
+    </resultMap>
+    <select id="getTask" resultType="long" resultMap="TaskMap">
+
+    </select>
+</mapper>
