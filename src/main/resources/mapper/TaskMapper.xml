@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rr.com.chapter5.mapper.TaskMapper">
+    <resultMap id="TaskMap" type="rr.com.chapter5.pojo.Task">
+        <result column="id" property="id"></result>
+        <result column="title" property="title"></result>
+        <result column="context" property="context"></result>
+        <result column="note" property="note"></result>
+    </resultMap>
+    <select id="getTask" resultType="long" resultMap="TaskMap">
+        select * from t_task where id=#{id}
+    </select>
+    <insert id="insertTask" parameterType="rr.com.chapter5.pojo.Task" useGeneratedKeys="true" keyProperty="id">
+        insert into t_task(title,context,note) values(#{task.title},#{task.context},#{task.note})
+    </insert>
+</mapper>
