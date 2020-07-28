@@ -4,8 +4,7 @@
 <configuration>
     <properties resource="jdbc.properties"></properties>
     <typeAliases >
-        <typeAlias alias="role" type="com.rr.mybatisStudy.pojo.Role"></typeAlias>
-        <package name="com.rr.mybatisStudy.pojo"/>
+        <package name="rr.com.chapter5.pojo"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -19,7 +18,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper/RoleMapper.xml"></mapper>
-        <mapper resource="mapper/UserMapper.xml"></mapper>
+        <mapper resource="mapper/TaskMapper.xml"></mapper>
     </mappers>
 </configuration>
