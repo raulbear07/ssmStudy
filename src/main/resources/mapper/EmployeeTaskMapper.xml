@@ -5,9 +5,10 @@
 <mapper namespace="rr.com.chapter5.mapper.TaskMapper">
     <resultMap id="TaskMap" type="rr.com.chapter5.pojo.EmployeeTask">
         <result column="id" property="id"></result>
-        <result column="title" property="title"></result>
-        <result column="context" property="context"></result>
+        <result column="emp_id" property="empId"></result>
+        <result column="task_name" property="taskName"></result>
         <result column="note" property="note"></result>
+        <association property="task" column="task_id" select="rr.com.chapter5.mapper.TaskMapper.getTask"></association>
     </resultMap>
     <select id="getTask" resultType="long" resultMap="TaskMap">
         select * from t_task where id=#{id}
