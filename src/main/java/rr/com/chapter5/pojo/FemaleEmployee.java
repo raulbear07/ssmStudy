@@ -1,6 +1,6 @@
 package rr.com.chapter5.pojo;
 
-public class FemaleEmployee {
+public class FemaleEmployee extends  Employee {
     private  FemaleHealthForm femaleHealthForm=null;
 
     public FemaleHealthForm getFemaleHealthForm() {
