@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rr.com.chapter5.mapper.FemaleHealthFormMapper">
+    <sql id="allColumn">
+        id,emp_id,heart,liver,spleen,lung,kidney,uterus,note
+    </sql>
+    <resultMap id="femaleHealthFormMap" type="rr.com.chapter5.pojo.FemaleHealthForm">
+        <result column="id" property="id"></result>
+        <result column="emp_id" property="empId"/>
+        <result column="heart" property="heart"/>
+        <result column="liver" property="liver"/>
+        <result column="spleen" property="spleen"/>
+        <result column="lung" property="lung"/>
+        <result column="kidney" property="kidney"/>
+        <result column="uterus" property="uterus"/>
+        <result column="note" property="note"/>
+    </resultMap>
+    <select id="getFemaleHealthForm" parameterType="long" resultMap="femaleHealthFormMap">
+        select <include refid="allColumn"> from t_female_health_form where emp_id=#{empId}
+    </select>
+
+</mapper>

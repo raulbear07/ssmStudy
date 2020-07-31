@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rr.com.chapter5.mapper.EmployeeMapper">
+    <resultMap id="TaskMap" type="rr.com.chapter5.pojo.Employee">
+        <result column="id" property="id"></result>
+        <result column="emp_id" property="empId"/>
+        <result column="sex" property="sex" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"></result>
+        <result column="birthday" property="birthday"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="POSITION" property="position"/>
+        <result column="note" property="note"/>
+        <association property="workCard" column="id" select="rr.com.chapter5.mapper.WorkCardMapper.getWorkCard"></association>
+        <collection property="employeeTaskList" column="id" select="rr.com.chapter5.mapper.EmployeeTaskMapper.getEmployeeTaskByEmpId">
+        </collection>
+        <discriminator javaType="int" column="sex">
+            <case value="1">
+                <association column="id" property="healthForm" select="rr.com.chapter5.mapper.MaleHealthFormMapper.getMaleHealthForm" />
+            </case>
+            <case value="2">
+                <association column="id" property="healthForm" select="rr.com.chapter5.mapper.MaleHealthFormMapper.getMaleHealthForm"/>
+            </case>
+        </discriminator>
+    </resultMap>
+    <resultMap id="femaleHealthFormMapper" type="rr.com.chapter5.pojo.FemaleHealthForm" extends="rr.com.chapter5.pojo.HealthForm" >
+        <association property=""
+    </resultMap>
+    <sql id="allColumn">
+        id,emp_id,task_id,task_name,note
+    </sql>
+    <sql id="noIdColumn">
+        emp_id,task_id,task_name,note
+    </sql>
+    <select id="getTask" resultType="long" resultMap="TaskMap">
+        select <include refid="allColumn"/>  from t_task where emp_id=#{empId}
+    </select>
+    <insert id="insertTask" parameterType="rr.com.chapter5.pojo.EmployeeTask" useGeneratedKeys="true" keyProperty="id">
+        insert into t_task(<include refid="noIdColumn"/>)
+        values(#{employeeTask.empId},#{employeeTask.task.id},#{employeeTask.task.title},#{employeeTask.note})
+    </insert>
+</mapper>

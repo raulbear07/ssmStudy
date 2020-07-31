@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="rr.com.chapter5.mapper.TaskMapper">
+<mapper namespace="rr.com.chapter5.mapper.EmployeeTaskMapper">
     <resultMap id="TaskMap" type="rr.com.chapter5.pojo.EmployeeTask">
         <result column="id" property="id"></result>
         <result column="emp_id" property="empId"></result>
@@ -17,7 +17,7 @@
         emp_id,task_id,task_name,note
     </sql>
     <select id="getTask" resultType="long" resultMap="TaskMap">
-        select <include refid="allColum"/>  from t_task where emp_id=#{empId}
+        select <include refid="allColumn"/>  from t_task where emp_id=#{empId}
     </select>
     <insert id="insertTask" parameterType="rr.com.chapter5.pojo.EmployeeTask" useGeneratedKeys="true" keyProperty="id">
         insert into t_task(<include refid="noIdColumn"/>)
