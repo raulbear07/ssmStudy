@@ -5,7 +5,10 @@ import org.apache.log4j.Logger;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
+import rr.com.chapter5.mapper.EmployeeMapper;
 import rr.com.chapter5.mapper.TaskMapper;
+import rr.com.chapter5.pojo.Employee;
+import rr.com.chapter5.pojo.MaleEmployee;
 import rr.com.chapter5.pojo.Task;
 import rr.com.chapter5.util.SqlSessionFactoryUtils;
 
@@ -17,15 +20,12 @@ public class Chapter5Test {
         try{
             SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
             sqlSession =sqlSessionFactory.openSession();
-            TaskMapper taskMapper= sqlSession.getMapper(TaskMapper.class);
-            Task task=new Task();
-            task.setContext("new Context");
-            task.setNote("new note");
-            task.setTitle("title1");
-            taskMapper.insertTask(task);
-            sqlSession.commit();
-            Task task1=taskMapper.getTask(task.getId());
-            System.out.println(task1.getContext());
+            EmployeeMapper employeeMapper =sqlSession.getMapper(EmployeeMapper.class);
+            Employee e =employeeMapper.getEmployee(1L);
+            System.out.println(e.getBirthday());
+            MaleEmployee male =(MaleEmployee)e;
+            System.out.println(male.getMaleHealthForm().getLiver());
+            System.out.println("End");
         }
         finally {
             if(sqlSession!=null)

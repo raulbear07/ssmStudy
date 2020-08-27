@@ -1,6 +1,6 @@
 package rr.com.chapter5.pojo;
 
-public class MaleHealthForm {
+public class MaleHealthForm extends  HealthForm {
     private String prostate;
 
     public String getProstate() {

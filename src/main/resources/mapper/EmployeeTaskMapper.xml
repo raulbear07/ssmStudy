@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="rr.com.chapter5.mapper.EmployeeTaskMapper">
-    <resultMap id="TaskMap" type="rr.com.chapter5.pojo.EmployeeTask">
+    <resultMap id="employeeTaskMap" type="rr.com.chapter5.pojo.EmployeeTask">
         <result column="id" property="id"></result>
         <result column="emp_id" property="empId"></result>
         <result column="task_name" property="taskName"></result>
@@ -16,11 +16,11 @@
     <sql id="noIdColumn">
         emp_id,task_id,task_name,note
     </sql>
-    <select id="getTask" resultType="long" resultMap="TaskMap">
-        select <include refid="allColumn"/>  from t_task where emp_id=#{empId}
+    <select id="getEmployeeTaskByEmpId" resultType="long" resultMap="employeeTaskMap">
+        select <include refid="allColumn"/>  from t_employee_task where emp_id=#{empId}
     </select>
-    <insert id="insertTask" parameterType="rr.com.chapter5.pojo.EmployeeTask" useGeneratedKeys="true" keyProperty="id">
-        insert into t_task(<include refid="noIdColumn"/>)
+    <insert id="insertEmployeeTask" parameterType="rr.com.chapter5.pojo.EmployeeTask" useGeneratedKeys="true" keyProperty="id">
+        insert into t_employee_task(<include refid="noIdColumn"/>)
          values(#{employeeTask.empId},#{employeeTask.task.id},#{employeeTask.task.title},#{employeeTask.note})
     </insert>
 </mapper>

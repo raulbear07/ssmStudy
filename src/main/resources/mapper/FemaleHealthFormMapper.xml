@@ -17,7 +17,7 @@
         <result column="note" property="note"/>
     </resultMap>
     <select id="getFemaleHealthForm" parameterType="long" resultMap="femaleHealthFormMap">
-        select <include refid="allColumn"> from t_female_health_form where emp_id=#{empId}
+        select <include refid="allColumn"/> from t_female_health_form where emp_id=#{empId}
     </select>
 
 </mapper>

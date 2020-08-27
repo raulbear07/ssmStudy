@@ -3,9 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="rr.com.chapter5.mapper.EmployeeMapper">
-    <resultMap id="TaskMap" type="rr.com.chapter5.pojo.Employee">
+    <resultMap id="employeeMap" type="rr.com.chapter5.pojo.Employee">
         <result column="id" property="id"></result>
-        <result column="emp_id" property="empId"/>
+        <result column="real_name" property="realName"/>
         <result column="sex" property="sex" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"></result>
         <result column="birthday" property="birthday"/>
         <result column="email" property="email"/>
@@ -16,28 +16,27 @@
         <collection property="employeeTaskList" column="id" select="rr.com.chapter5.mapper.EmployeeTaskMapper.getEmployeeTaskByEmpId">
         </collection>
         <discriminator javaType="int" column="sex">
-            <case value="1">
-                <association column="id" property="healthForm" select="rr.com.chapter5.mapper.MaleHealthFormMapper.getMaleHealthForm" />
+            <case value="2" resultMap="femaleHealthFormMap">
             </case>
-            <case value="2">
-                <association column="id" property="healthForm" select="rr.com.chapter5.mapper.MaleHealthFormMapper.getMaleHealthForm"/>
+            <case value="1" resultMap="maleHealthFormMap">
             </case>
         </discriminator>
     </resultMap>
-    <resultMap id="femaleHealthFormMapper" type="rr.com.chapter5.pojo.FemaleHealthForm" extends="rr.com.chapter5.pojo.HealthForm" >
-        <association property=""
+    <resultMap id="femaleHealthFormMap" type="rr.com.chapter5.pojo.FemaleEmployee" extends="employeeMap" >
+        <association property="femaleHealthForm" column="id" select="rr.com.chapter5.mapper.FemaleHealthFormMapper.getFemaleHealthForm">
+        </association>
+    </resultMap>
+    <resultMap id="maleHealthFormMap" type="rr.com.chapter5.pojo.MaleEmployee" extends="employeeMap" >
+        <association property="maleHealthForm" column="id" select="rr.com.chapter5.mapper.MaleHealthFormMapper.getMaleHealthForm">
+        </association>
     </resultMap>
     <sql id="allColumn">
-        id,emp_id,task_id,task_name,note
+        id,real_Name,sex,birthday,mobile,email,POSITION ,note
     </sql>
-    <sql id="noIdColumn">
-        emp_id,task_id,task_name,note
-    </sql>
-    <select id="getTask" resultType="long" resultMap="TaskMap">
-        select <include refid="allColumn"/>  from t_task where emp_id=#{empId}
+    <select id="getEmployee" resultType="long" resultMap="employeeMap">
+        select <include refid="allColumn"/>  from t_employee where id=#{id}
     </select>
-    <insert id="insertTask" parameterType="rr.com.chapter5.pojo.EmployeeTask" useGeneratedKeys="true" keyProperty="id">
-        insert into t_task(<include refid="noIdColumn"/>)
-        values(#{employeeTask.empId},#{employeeTask.task.id},#{employeeTask.task.title},#{employeeTask.note})
-    </insert>
+    <select id="getEmployeeByNames" resultType="long" resultMap="employeeMap">
+        select <include refid="allColumn"/>  from t_employee where name like contact ('%',#{name},'%')
+    </select>
 </mapper>

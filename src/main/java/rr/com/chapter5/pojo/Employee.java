@@ -14,15 +14,6 @@ public class Employee {
     private String note;
     private WorkCard workCard=null;
     private List<EmployeeTask> employeeTaskList=null;
-    private HealthForm healthForm=null;
-
-    public HealthForm getHealthForm() {
-        return healthForm;
-    }
-
-    public void setHealthForm(HealthForm healthForm) {
-        this.healthForm = healthForm;
-    }
 
     public Long getId() {
         return id;

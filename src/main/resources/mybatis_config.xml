@@ -19,5 +19,11 @@
     </environments>
     <mappers>
         <mapper resource="mapper/TaskMapper.xml"></mapper>
+        <mapper resource="mapper/EmployeeMapper.xml"></mapper>
+        <mapper resource="mapper/EmployeeTaskMapper.xml"></mapper>
+        <mapper resource="mapper/FemaleHealthFormMapper.xml"></mapper>
+        <mapper resource="mapper/MaleHealthFormMapper.xml"></mapper>
+        <mapper resource="mapper/TaskMapper.xml"></mapper>
+        <mapper resource="mapper/WorkCardMapper.xml"></mapper>
     </mappers>
 </configuration>
