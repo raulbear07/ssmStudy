@@ -1,6 +1,8 @@
 package rr.com.chapter5.pojo;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
     private Long id;
     private String title;
     private String context;

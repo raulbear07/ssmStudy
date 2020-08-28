@@ -1,9 +1,10 @@
 package rr.com.chapter5.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Employee {
+public class Employee implements Serializable {
     private Long id;
     private String realName;
     private SexEum sex =null;

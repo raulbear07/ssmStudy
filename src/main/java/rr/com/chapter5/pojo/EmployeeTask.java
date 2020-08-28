@@ -1,6 +1,8 @@
 package rr.com.chapter5.pojo;
 
-public class EmployeeTask {
+import java.io.Serializable;
+
+public class EmployeeTask implements Serializable {
     private Long id;
     private Long empId;
     private Task task=null;

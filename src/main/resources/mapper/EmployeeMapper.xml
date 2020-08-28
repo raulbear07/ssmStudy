@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="rr.com.chapter5.mapper.EmployeeMapper">
+    <cache/>
     <resultMap id="employeeMap" type="rr.com.chapter5.pojo.Employee">
         <result column="id" property="id"></result>
         <result column="real_name" property="realName"/>
@@ -12,8 +13,8 @@
         <result column="mobile" property="mobile"/>
         <result column="POSITION" property="position"/>
         <result column="note" property="note"/>
-        <association property="workCard" column="id" select="rr.com.chapter5.mapper.WorkCardMapper.getWorkCard"></association>
-        <collection property="employeeTaskList" column="id" select="rr.com.chapter5.mapper.EmployeeTaskMapper.getEmployeeTaskByEmpId">
+        <association property="workCard" column="id" select="rr.com.chapter5.mapper.WorkCardMapper.getWorkCard" fetchType="lazy"></association>
+        <collection property="employeeTaskList" column="id" fetchType="lazy" select="rr.com.chapter5.mapper.EmployeeTaskMapper.getEmployeeTaskByEmpId">
         </collection>
         <discriminator javaType="int" column="sex">
             <case value="2" resultMap="femaleHealthFormMap">

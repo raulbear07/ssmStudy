@@ -1,6 +1,8 @@
 package rr.com.chapter5.pojo;
 
-public class MaleHealthForm extends  HealthForm {
+import java.io.Serializable;
+
+public class MaleHealthForm extends  HealthForm implements Serializable {
     private String prostate;
 
     public String getProstate() {

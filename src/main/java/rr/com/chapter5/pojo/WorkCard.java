@@ -1,6 +1,8 @@
 package rr.com.chapter5.pojo;
 
-public class WorkCard {
+import java.io.Serializable;
+
+public class WorkCard implements Serializable {
     private Long id;
     private Long empId;
     private String realName;

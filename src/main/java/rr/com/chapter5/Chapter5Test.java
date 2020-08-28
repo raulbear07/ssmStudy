@@ -17,14 +17,19 @@ public class Chapter5Test {
 
         Logger logger =Logger.getLogger(Chapter5Test.class);
         SqlSession sqlSession =null;
+        SqlSession sqlSession2 =null;
         try{
             SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
             sqlSession =sqlSessionFactory.openSession();
             EmployeeMapper employeeMapper =sqlSession.getMapper(EmployeeMapper.class);
             Employee e =employeeMapper.getEmployee(1L);
             System.out.println(e.getBirthday());
-            MaleEmployee male =(MaleEmployee)e;
-            System.out.println(male.getMaleHealthForm().getLiver());
+            sqlSession2 =sqlSessionFactory.openSession();
+            EmployeeMapper employeeMapper2 =sqlSession2.getMapper(EmployeeMapper.class);
+            Employee e2 =employeeMapper2.getEmployee(1L);
+            System.out.println(e2.getBirthday());
+            //MaleEmployee male =(MaleEmployee)e;
+            //System.out.println(male.getMaleHealthForm().getLiver());
             System.out.println("End");
         }
         finally {

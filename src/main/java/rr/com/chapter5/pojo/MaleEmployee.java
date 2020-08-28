@@ -1,6 +1,8 @@
 package rr.com.chapter5.pojo;
 
-public class MaleEmployee extends  Employee {
+import java.io.Serializable;
+
+public class MaleEmployee extends  Employee implements Serializable {
     private MaleHealthForm maleHealthForm=null;
 
     public MaleHealthForm getMaleHealthForm() {

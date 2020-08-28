@@ -1,6 +1,8 @@
 package rr.com.chapter5.pojo;
 
-public class FemaleHealthForm extends HealthForm {
+import java.io.Serializable;
+
+public class FemaleHealthForm extends HealthForm implements Serializable {
      private String uterus;
 
     public String getUterus() {
